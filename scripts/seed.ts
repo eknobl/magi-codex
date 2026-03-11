@@ -3,6 +3,10 @@
  * Usage: npm run db:seed
  */
 
+import { config } from 'dotenv';
+config({ path: '.env.local' });
+config({ path: '.env' });
+
 import { db } from '../src/db';
 import { magiStates } from '../src/db/schema';
 import fs from 'fs';
