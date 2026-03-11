@@ -137,7 +137,7 @@ export async function GET(req: Request) {
   const allStates = allRows.map((r) => r.state as MagiState);
 
   // Score relevance
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+  const baseUrl = process.env.SITE_URL ?? 'http://localhost:3000';
   const scoreRes = await fetch(`${baseUrl}/api/dispatch/score`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
