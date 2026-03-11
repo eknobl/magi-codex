@@ -1,12 +1,15 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { createHash } from 'crypto';
 
-function sessionTokenFor(secret: string): string {
-  return createHash('sha256').update(secret).digest('hex');
+async function sha256hex(value: string): Promise<string> {
+  const data = new TextEncoder().encode(value);
+  const buffer = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(buffer))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const method = req.method;
 
@@ -26,11 +29,16 @@ export function middleware(req: NextRequest) {
 
   const secret = process.env.DASHBOARD_SECRET;
   if (!secret) {
-    // No secret configured — block all protected routes
-    return NextResponse.json({ error: 'Auth not configured' }, { status: 503 });
+    if (pathname.startsWith('/api/')) {
+      return NextResponse.json({ error: 'Auth not configured' }, { status: 503 });
+    }
+    const loginUrl = req.nextUrl.clone();
+    loginUrl.pathname = '/login';
+    loginUrl.searchParams.set('next', pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
-  const expectedToken = sessionTokenFor(secret);
+  const expectedToken = await sha256hex(secret);
   const cookie = req.cookies.get('magi-session');
 
   if (cookie?.value === expectedToken) {
