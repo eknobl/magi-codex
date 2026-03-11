@@ -9,6 +9,7 @@ import {
   uuid,
   index,
   real,
+  serial,
 } from 'drizzle-orm/pg-core';
 
 // ── Core MAGI state ───────────────────────────────────────────────────────────
@@ -50,7 +51,7 @@ export const dispatches = pgTable(
 );
 
 // ── World events ──────────────────────────────────────────────────────────────
-// Author-injected events that seed new dispatches or modify state.
+// Author-injected events. status: planned → seeding → active → resolved
 export const worldEvents = pgTable('world_events', {
   id: uuid('id').primaryKey().defaultRandom(),
   title: text('title').notNull(),
@@ -61,7 +62,18 @@ export const worldEvents = pgTable('world_events', {
   affectedMagi: text('affected_magi').array(),
   eventType: text('event_type').notNull(),
   isMilestone: boolean('is_milestone').default(false).notNull(),
+  status: text('status').default('planned').notNull(),
   injectedAt: timestamp('injected_at').defaultNow().notNull(),
+});
+
+// ── Global fictional clock ─────────────────────────────────────────────────────
+// Singleton row (id=1). Single source of truth for the current fictional date.
+export const systemClock = pgTable('system_clock', {
+  id: serial('id').primaryKey(),
+  fictionalYear: integer('fictional_year').notNull().default(0),
+  fictionalMonth: text('fictional_month').notNull().default('January'),
+  fictionalDay: integer('fictional_day').notNull().default(1),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
 // ── Relationship snapshots ────────────────────────────────────────────────────

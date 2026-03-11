@@ -8,7 +8,7 @@ config({ path: '.env.local' });
 config({ path: '.env' });
 
 import { db } from '../src/db';
-import { magiStates } from '../src/db/schema';
+import { magiStates, systemClock } from '../src/db/schema';
 import fs from 'fs';
 import path from 'path';
 
@@ -60,6 +60,13 @@ async function seed() {
 
     console.log(`  OK: ${state.id} — ${state.domain}`);
   }
+
+  // Seed system_clock singleton (id=1, YR 0 January 1)
+  await db
+    .insert(systemClock)
+    .values({ id: 1, fictionalYear: 0, fictionalMonth: 'January', fictionalDay: 1 })
+    .onConflictDoNothing();
+  console.log('\n  OK: system_clock — YR 0, January 1');
 
   console.log('\nSeed complete.');
   process.exit(0);

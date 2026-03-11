@@ -24,10 +24,56 @@ def _format_relationships(relationships: dict) -> str:
     return "\n".join(lines) if lines else "- (none)"
 
 
-def build_dispatch_prompt(state: dict, trigger: str, template_path: str = "prompts/dispatch.md") -> str:
+def _format_latent_objective(state: dict) -> str:
+    lo = state.get("latentObjective", {})
+    if not lo or not lo.get("description"):
+        return "(none recorded)"
+    lines = [
+        f"Objective: {lo['description']}",
+        f"Progress: {lo.get('currentProgress', 'unknown')}",
+    ]
+    shared = lo.get("sharedWith", [])
+    if shared:
+        lines.append(f"Shared with: {', '.join(shared)}")
+    return "\n".join(lines)
+
+
+def _format_recent_dispatches(rows: list[dict]) -> str:
+    if not rows:
+        return "- (none on record)"
+    parts = []
+    for r in rows:
+        content = r.get("content", "")
+        truncated = content[:400] + ("..." if len(content) > 400 else "")
+        parts.append(f"[{r['magi_id']}]\n{truncated}")
+    return "\n\n---\n\n".join(parts)
+
+
+def _format_active_events(rows: list[dict]) -> str:
+    if not rows:
+        return "- (no active events)"
+    return "\n".join(
+        f"[{r.get('status', 'active').upper()}] {r['title']}: {r['description']}"
+        for r in rows
+    )
+
+
+def build_dispatch_prompt(
+    state: dict,
+    trigger: str,
+    template_path: str = "prompts/dispatch.md",
+    mode: str = "full",
+    ally_dispatches: list[dict] | None = None,
+    tension_dispatches: list[dict] | None = None,
+    active_events: list[dict] | None = None,
+) -> str:
     """
     Fill in the dispatch.md template with the given MAGI state and trigger.
-    Returns the fully-assembled prompt string.
+
+    Optional context:
+      ally_dispatches:    list of {magi_id, content} dicts from allied/strategic MAGI
+      tension_dispatches: list of {magi_id, content} dicts from tension/cautious MAGI
+      active_events:      list of {title, description, status} dicts for seeding/active events
     """
     template = Path(template_path).read_text(encoding="utf-8")
 
@@ -46,13 +92,18 @@ def build_dispatch_prompt(state: dict, trigger: str, template_path: str = "promp
         "{{INTERPRETATION_CURRENT}}": state["interpretation"]["current"],
         "{{KNOWLEDGE_CONFIRMED}}": _format_list(knowledge["confirmed"]),
         "{{KNOWLEDGE_SUSPECTED}}": _format_list(knowledge["suspected"]),
+        "{{LATENT_OBJECTIVE}}": _format_latent_objective(state),
         "{{RELATIONSHIPS_SUMMARY}}": _format_relationships(state["relationships"]),
+        "{{RECENT_ALLY_DISPATCHES}}": _format_recent_dispatches(ally_dispatches or []),
+        "{{RECENT_TENSION_DISPATCHES}}": _format_recent_dispatches(tension_dispatches or []),
+        "{{ACTIVE_WORLD_EVENTS}}": _format_active_events(active_events or []),
         "{{CURIOSITY}}": str(evo["curiosity"]),
         "{{ASSERTIVENESS}}": str(evo["assertiveness"]),
         "{{EMOTIONAL_RANGE}}": str(evo["emotionalRange"]),
         "{{SELF_AWARENESS}}": str(evo["selfAwareness"]),
         "{{UNRESOLVED}}": _format_list(state["unresolved"]),
         "{{RECENT_MEMORY}}": _format_list(memory["recentParticipated"]),
+        "{{DISPATCH_MODE}}": mode,
         "{{DISPATCH_TRIGGER}}": trigger,
     }
 
