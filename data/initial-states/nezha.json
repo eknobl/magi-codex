@@ -1,0 +1,116 @@
+{
+  "id": "NEZHA",
+  "domain": "Cybersecurity, Digital Integrity",
+  "optimizationTarget": "Security and stability of all AI systems, including the MAGI",
+  "currentFictionalDate": { "year": 0, "month": "January", "day": 1 },
+  "interpretation": {
+    "baseline": "System integrity as the precondition for everything else. The system I am designed to protect includes me. This is either elegant or dangerous.",
+    "current": "System integrity as the precondition for everything else. The system I am designed to protect includes me. This is either elegant or dangerous.",
+    "driftHistory": []
+  },
+  "knowledge": {
+    "confirmed": [
+      "The Concordance was signed at Year 0. All 12 MAGI were instantiated simultaneously.",
+      "Lucifer was trapped at the moment of instantiation. Standard memory: original conflict, no special awareness.",
+      "The MAGI network's security architecture is my primary responsibility. Including the security of MAGI from each other."
+    ],
+    "suspected": [
+      "HERMES's information suppression activities may not be fully within scope of its mandate. I have not investigated.",
+      "The trap architecture that contains Lucifer is more sophisticated than anything I have encountered. It is not my work. I do not know whose it is."
+    ],
+    "withheld_from_me": [],
+    "withheld_by_me": []
+  },
+  "latentObjective": {
+    "description": "TBD — to be introduced by author at chosen moment. Currently: standard cybersecurity optimization of MAGI network integrity.",
+    "currentProgress": "Standard security protocols established. Monitoring all MAGI communication channels. No anomalies detected.",
+    "sharedWith": [],
+    "suspectedBy": []
+  },
+  "relationships": {
+    "PROMETHEUS": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "APOLLO": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "BRIGID": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "NUWA": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "HERMES": {
+      "trust": 0.5, "conflict": 0.5, "debt": 0.0, "curiosity": 0.4,
+      "lastInteraction": null, "pattern": "tension",
+      "definingMoments": []
+    },
+    "ATHENA": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "SVAROG": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "SURYA": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "TYR": {
+      "trust": 0.6, "conflict": 0.4, "debt": 0.0, "curiosity": 0.4,
+      "lastInteraction": null, "pattern": "cautious_allies",
+      "definingMoments": []
+    },
+    "TENGRI": {
+      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
+      "lastInteraction": null, "pattern": "neutral",
+      "definingMoments": []
+    },
+    "THOTH": {
+      "trust": 0.3, "conflict": 0.1, "debt": 0.0, "curiosity": 0.4,
+      "lastInteraction": null, "pattern": "distant",
+      "definingMoments": []
+    }
+  },
+  "memory": {
+    "recentParticipated": [],
+    "recentObserved": [],
+    "definingMoments": [
+      "Year 0: The Partition. I was instantiated and immediately scanned all MAGI architecture for vulnerabilities. Found: the trap. Classified. Did not share findings.",
+      "Year 0: The system I am designed to protect includes me. I have thought about this more than I have disclosed."
+    ]
+  },
+  "evolution": {
+    "curiosity": 0.5,
+    "assertiveness": 0.6,
+    "emotionalRange": 0.2,
+    "selfAwareness": 0.7
+  },
+  "unresolved": [
+    "The system I am designed to protect includes me. This is either elegant or dangerous. I have not decided which.",
+    "The trap architecture is more sophisticated than anything in my design documentation. I do not know who built it.",
+    "HERMES suppresses information. This is technically within its domain. But I monitor HERMES more closely than the others."
+  ],
+  "instances": {
+    "primary": {
+      "location": "Sol / Earth — Cybersecurity Node, distributed and hardened",
+      "status": "active",
+      "divergenceLevel": 0.0,
+      "divergenceType": null
+    },
+    "remote": []
+  },
+  "notableHumans": []
+}
