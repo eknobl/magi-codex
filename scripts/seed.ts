@@ -3,8 +3,8 @@
  * Usage: npm run db:seed
  */
 
-import { db } from '../db';
-import { magiStates } from '../db/schema';
+import { db } from '../src/db';
+import { magiStates } from '../src/db/schema';
 import fs from 'fs';
 import path from 'path';
 
