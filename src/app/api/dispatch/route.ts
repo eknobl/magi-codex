@@ -78,7 +78,7 @@ export async function POST(req: Request) {
     model: anthropic('claude-sonnet-4-6'),
     system: systemPrompt,
     prompt: userPrompt,
-    maxTokens: 1024,
+    maxOutputTokens: 1024,
     onFinish: async ({ text, usage }) => {
       await db.insert(dispatches).values({
         magiId: magiId.toUpperCase(),
@@ -87,7 +87,7 @@ export async function POST(req: Request) {
         fictionalDay: row.fictionalDay,
         content: text,
         promptUsed: userPrompt,
-        tokensUsed: (usage.promptTokens ?? 0) + (usage.completionTokens ?? 0),
+        tokensUsed: (usage.inputTokens ?? 0) + (usage.outputTokens ?? 0),
       });
     },
   });

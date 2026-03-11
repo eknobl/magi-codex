@@ -22,7 +22,7 @@ function createDb(): DrizzleDb {
 export const db = new Proxy({} as DrizzleDb, {
   get(_target, prop) {
     if (!_db) _db = createDb();
-    const value = (_db as Record<string | symbol, unknown>)[prop];
+    const value = (_db as unknown as Record<string | symbol, unknown>)[prop];
     return typeof value === 'function' ? (value as Function).bind(_db) : value;
   },
 });
