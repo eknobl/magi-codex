@@ -150,31 +150,31 @@ export async function GET(req: Request) {
 
   const { scores } = (await scoreRes.json()) as { scores: MagiScore[] };
 
-  // Generate dispatches for all scored MAGI
-  const results: { magiId: string; mode: string; ok: boolean }[] = [];
+  // Generate dispatches for all scored MAGI — parallel to stay within function timeout
+  const results = await Promise.all(
+    scores.map(async ({ magiId, mode }) => {
+      try {
+        const dispatchRes = await fetch(`${baseUrl}/api/dispatch`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ magiId, trigger, mode }),
+        });
 
-  for (const { magiId, mode } of scores) {
-    try {
-      const dispatchRes = await fetch(`${baseUrl}/api/dispatch`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ magiId, trigger, mode }),
-      });
-
-      // Consume the stream so onFinish fires and dispatch is saved
-      if (dispatchRes.body) {
-        const reader = dispatchRes.body.getReader();
-        while (true) {
-          const { done } = await reader.read();
-          if (done) break;
+        // Consume the stream so onFinish fires and dispatch is saved
+        if (dispatchRes.body) {
+          const reader = dispatchRes.body.getReader();
+          while (true) {
+            const { done } = await reader.read();
+            if (done) break;
+          }
         }
-      }
 
-      results.push({ magiId, mode, ok: dispatchRes.ok });
-    } catch {
-      results.push({ magiId, mode, ok: false });
-    }
-  }
+        return { magiId, mode, ok: dispatchRes.ok };
+      } catch {
+        return { magiId, mode, ok: false };
+      }
+    })
+  );
 
   // Mark event as active (then resolved after dispatches)
   if (activeEvent) {
