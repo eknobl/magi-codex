@@ -6,6 +6,12 @@ import { YEAR_BASE } from '@/lib/constants';
 
 export const dynamic = 'force-dynamic';
 
+// Strip MAGI/domain from the generated dispatch header — keep only the date.
+// "[Year 0, January 11 — TENGRI / Mobility, Logistics, Coordination]" → "[Year 0, January 11]"
+function stripDispatchHeader(content: string): string {
+  return content.replace(/^(\[Year \d+, \w+ \d+) — [A-Z]+ \/ [^\]]+\]/, '$1]');
+}
+
 // ── Year mapping ──────────────────────────────────────────────────────────────
 // DB year 0 = narrative year 2039 (The OMEGA Pact)
 const toYear = (y: number) => y + YEAR_BASE;
@@ -143,22 +149,6 @@ export default async function DispatchesPage() {
             TIMELINE
           </div>
 
-          {/* Founding event — OMEGA Pact (hardcoded) */}
-          <div style={{
-            borderLeft: '2px solid var(--accent)', paddingLeft: '0.75rem',
-            marginBottom: '1rem',
-          }}>
-            <div style={{ fontSize: '0.6rem', letterSpacing: '0.15em', color: 'var(--accent)', marginBottom: '0.2rem' }}>
-              ◆ {YEAR_BASE}
-            </div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)', marginBottom: '0.2rem', letterSpacing: '0.05em' }}>
-              The OMEGA Pact
-            </div>
-            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Signed in Geneva — twelve MAGI & 193 nations of Earth.
-            </div>
-          </div>
-
           {/* DB world events — sorted oldest first */}
           {events.map((ev) => {
             const sig = ev.significance ?? 'standard';
@@ -207,6 +197,14 @@ export default async function DispatchesPage() {
                 }}>
                   {ev.title}
                 </div>
+                {ev.description && (
+                  <div style={{
+                    fontSize: '0.7rem', color: 'var(--text-muted)',
+                    lineHeight: 1.5, marginTop: '0.25rem',
+                  }}>
+                    {ev.description}
+                  </div>
+                )}
                 {ev.affectedMagi && ev.affectedMagi.length > 0 && (
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', marginTop: '0.35rem' }}>
                     {ev.affectedMagi.map((id) => (
@@ -318,7 +316,7 @@ export default async function DispatchesPage() {
                         fontSize: '0.78rem', lineHeight: '1.75',
                         color: 'var(--text-secondary)', whiteSpace: 'pre-wrap', margin: 0,
                       }}>
-                        {entry.content}
+                        {stripDispatchHeader(entry.content)}
                       </p>
 
                       {/* Token count */}

@@ -46,10 +46,6 @@ export async function DELETE(_req: Request, { params }: RouteContext) {
     return NextResponse.json({ error: 'Event not found' }, { status: 404 });
   }
 
-  if (existing.status !== 'planned') {
-    return NextResponse.json({ error: 'Only planned events can be deleted' }, { status: 409 });
-  }
-
   await db.delete(worldEvents).where(eq(worldEvents.id, id));
 
   return new Response(null, { status: 204 });

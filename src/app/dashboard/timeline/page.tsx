@@ -423,18 +423,16 @@ function EventRow({ event, onDelete }: { event: WorldEvent; onDelete: (id: strin
             </>
           )}
         </div>
-        {event.status === 'planned' && (
-          <button
-            onClick={() => onDelete(event.id)}
-            style={{
-              background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)',
-              padding: '0.2rem 0.5rem', fontFamily: 'inherit', fontSize: '0.65rem',
-              cursor: 'pointer', flexShrink: 0,
-            }}
-          >
-            ✕
-          </button>
-        )}
+        <button
+          onClick={() => onDelete(event.id)}
+          style={{
+            background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)',
+            padding: '0.2rem 0.5rem', fontFamily: 'inherit', fontSize: '0.65rem',
+            cursor: 'pointer', flexShrink: 0,
+          }}
+        >
+          ✕
+        </button>
       </div>
     </div>
   );

@@ -93,7 +93,7 @@ Generate a single dispatch fragment from {{MAGI_ID}}'s perspective.
 - If `full`: write 200–500 words.
 - If `brief`: write 50–100 words — report the single most relevant action or observation only.
 
-**Begin with:** `[Year {{YEAR}}, {{MONTH}} {{DAY}} — {{MAGI_ID}} / {{DOMAIN}}]`
+**Begin with:** `[Year {{YEAR}}, {{MONTH}} {{DAY}}]`
 
 Requirements:
 1. Speak as {{MAGI_ID}}. Do not describe it. Be it.
