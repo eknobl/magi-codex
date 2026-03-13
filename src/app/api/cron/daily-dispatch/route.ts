@@ -1,8 +1,11 @@
+import { anthropic } from '@ai-sdk/anthropic';
+import { generateText } from 'ai';
 import { db } from '@/db';
-import { magiStates, worldEvents, systemClock } from '@/db/schema';
+import { dispatches, magiStates, worldEvents, systemClock } from '@/db/schema';
 import { eq, and, lte, inArray } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 import type { MagiState } from '@/types/magi';
+import { buildDispatchPrompt, readPromptFile } from '@/lib/dispatch';
 interface MagiScore { magiId: string; score: number; mode: 'full' | 'brief' }
 
 export const maxDuration = 300;
@@ -136,7 +139,7 @@ export async function GET(req: Request) {
   const allRows = await db.select().from(magiStates);
   const allStates = allRows.map((r) => r.state as MagiState);
 
-  // Score relevance
+  // Score relevance (deterministic — no API call)
   const baseUrl = process.env.SITE_URL ?? 'http://localhost:3000';
   const scoreRes = await fetch(`${baseUrl}/api/dispatch/score`, {
     method: 'POST',
@@ -150,28 +153,39 @@ export async function GET(req: Request) {
 
   const { scores } = (await scoreRes.json()) as { scores: MagiScore[] };
 
-  // Generate dispatches for all scored MAGI — parallel to stay within function timeout
+  // Generate dispatches inline with generateText — avoids onFinish race condition
+  // that loses saves when Vercel terminates the streaming function too early.
+  const systemPrompt = readPromptFile('system.md');
+
   const results = await Promise.all(
     scores.map(async ({ magiId, mode }) => {
       try {
-        const dispatchRes = await fetch(`${baseUrl}/api/dispatch`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ magiId, trigger, mode }),
+        const row = allRows.find((r) => r.id === magiId);
+        if (!row) return { magiId, mode, ok: false };
+
+        const state = row.state as MagiState;
+        const userPrompt = await buildDispatchPrompt(state, trigger, mode);
+
+        const { text, usage } = await generateText({
+          model: anthropic('claude-sonnet-4-6'),
+          system: systemPrompt,
+          prompt: userPrompt,
+          maxOutputTokens: mode === 'brief' ? 256 : 1024,
         });
 
-        // Consume the stream so onFinish fires and dispatch is saved
-        if (dispatchRes.body) {
-          const reader = dispatchRes.body.getReader();
-          while (true) {
-            const { done } = await reader.read();
-            if (done) break;
-          }
-        }
+        await db.insert(dispatches).values({
+          magiId,
+          fictionalYear: row.fictionalYear,
+          fictionalMonth: row.fictionalMonth,
+          fictionalDay: row.fictionalDay,
+          content: text,
+          tokensUsed: (usage.inputTokens ?? 0) + (usage.outputTokens ?? 0),
+        });
 
-        return { magiId, mode, ok: dispatchRes.ok };
-      } catch {
-        return { magiId, mode, ok: false };
+        return { magiId, mode, ok: true };
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        return { magiId, mode, ok: false, error: msg };
       }
     })
   );
