@@ -22,14 +22,17 @@ export async function POST(req: Request) {
     fictionalMonth: string;
     fictionalDay: number;
     affectedMagi?: string[];
-    eventType: string;
-    isMilestone?: boolean;
+    eventTypes: string[];
+    significance?: string;
   };
 
-  const { title, description, fictionalYear, fictionalMonth, fictionalDay, eventType } = body;
+  const { title, description, fictionalYear, fictionalMonth, fictionalDay, eventTypes } = body;
 
-  if (!title || !description || fictionalYear === undefined || !fictionalMonth || !fictionalDay || !eventType) {
+  if (!title || !description || fictionalYear === undefined || !fictionalMonth || !fictionalDay) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+  }
+  if (!eventTypes || eventTypes.length === 0) {
+    return NextResponse.json({ error: 'At least one event type is required' }, { status: 400 });
   }
 
   const [row] = await db
@@ -41,8 +44,8 @@ export async function POST(req: Request) {
       fictionalMonth,
       fictionalDay,
       affectedMagi: body.affectedMagi ?? [],
-      eventType,
-      isMilestone: body.isMilestone ?? false,
+      eventTypes,
+      significance: body.significance ?? 'standard',
       status: 'planned',
     })
     .returning();

@@ -175,9 +175,9 @@ export async function GET(req: Request) {
 
         await db.insert(dispatches).values({
           magiId,
-          fictionalYear: row.fictionalYear,
-          fictionalMonth: row.fictionalMonth,
-          fictionalDay: row.fictionalDay,
+          fictionalYear,
+          fictionalMonth,
+          fictionalDay,
           content: text,
           tokensUsed: (usage.inputTokens ?? 0) + (usage.outputTokens ?? 0),
         });

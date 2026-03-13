@@ -4,7 +4,6 @@ import {
   jsonb,
   timestamp,
   integer,
-  boolean,
   doublePrecision,
   uuid,
   index,
@@ -60,8 +59,8 @@ export const worldEvents = pgTable('world_events', {
   fictionalMonth: text('fictional_month').notNull(),
   fictionalDay: integer('fictional_day').notNull(),
   affectedMagi: text('affected_magi').array(),
-  eventType: text('event_type').notNull(),
-  isMilestone: boolean('is_milestone').default(false).notNull(),
+  eventTypes: text('event_type').array().notNull().default([]),
+  significance: text('significance').default('standard').notNull(),
   status: text('status').default('planned').notNull(),
   injectedAt: timestamp('injected_at').defaultNow().notNull(),
 });

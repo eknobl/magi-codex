@@ -2,12 +2,12 @@ import { db } from '@/db';
 import { dispatches, magiStates, worldEvents } from '@/db/schema';
 import { desc, eq, asc } from 'drizzle-orm';
 import Link from 'next/link';
+import { YEAR_BASE } from '@/lib/constants';
 
 export const dynamic = 'force-dynamic';
 
 // ── Year mapping ──────────────────────────────────────────────────────────────
 // DB year 0 = narrative year 2039 (The OMEGA Pact)
-const YEAR_BASE = 2039;
 const toYear = (y: number) => y + YEAR_BASE;
 
 // ── Month helpers ─────────────────────────────────────────────────────────────
@@ -36,6 +36,20 @@ const STATUS_COLOR: Record<string, string> = {
   active:   'var(--apollo)',
   seeding:  'var(--hermes)',
   planned:  'var(--accent-dim)',
+};
+
+// ── Significance tiers ────────────────────────────────────────────────────────
+const SIG_GLYPH: Record<string, string> = {
+  standard: '', notable: '◇', milestone: '◆', epochal: '◈',
+};
+const SIG_BORDER: Record<string, string> = {
+  standard:  'var(--border)',
+  notable:   'var(--text-muted)',
+  milestone: 'var(--accent-dim)',
+  epochal:   'var(--accent)',
+};
+const SIG_WEIGHT: Record<string, number> = {
+  standard: 400, notable: 500, milestone: 600, epochal: 700,
 };
 
 interface DayGroup {
@@ -146,50 +160,70 @@ export default async function DispatchesPage() {
           </div>
 
           {/* DB world events — sorted oldest first */}
-          {events.map((ev) => (
-            <div
-              key={ev.id}
-              style={{
-                borderLeft: `2px solid ${ev.isMilestone ? 'var(--accent-dim)' : 'var(--border)'}`,
-                paddingLeft: '0.75rem',
-                marginBottom: '1rem',
-                opacity: ev.status === 'resolved' ? 0.6 : 1,
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem' }}>
-                <span style={{ fontSize: '0.6rem', color: STATUS_COLOR[ev.status] ?? 'var(--text-muted)' }}>
-                  {STATUS_GLYPH[ev.status] ?? '○'}
-                </span>
-                <span style={{ fontSize: '0.6rem', letterSpacing: '0.1em', color: 'var(--text-muted)' }}>
-                  {toYear(ev.fictionalYear)} {ev.fictionalMonth.slice(0, 3).toUpperCase()}
-                </span>
-                {ev.isMilestone && (
-                  <span style={{ fontSize: '0.55rem', color: 'var(--accent-dim)', letterSpacing: '0.1em' }}>◆</span>
+          {events.map((ev) => {
+            const sig = ev.significance ?? 'standard';
+            const glyph = SIG_GLYPH[sig] ?? '';
+            const isEpochal = sig === 'epochal';
+            return (
+              <div
+                key={ev.id}
+                style={{
+                  borderLeft: `2px solid ${SIG_BORDER[sig] ?? 'var(--border)'}`,
+                  paddingLeft: '0.75rem',
+                  marginBottom: '1rem',
+                  opacity: ev.status === 'resolved' ? 0.6 : 1,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem', flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: '0.6rem', color: STATUS_COLOR[ev.status] ?? 'var(--text-muted)' }}>
+                    {STATUS_GLYPH[ev.status] ?? '○'}
+                  </span>
+                  <span style={{ fontSize: '0.6rem', letterSpacing: '0.1em', color: 'var(--text-muted)' }}>
+                    {toYear(ev.fictionalYear)} {ev.fictionalMonth.slice(0, 3).toUpperCase()}
+                  </span>
+                  {glyph && (
+                    <span style={{ fontSize: '0.55rem', color: SIG_BORDER[sig], letterSpacing: '0.1em' }}>{glyph}</span>
+                  )}
+                </div>
+                {/* Type pills */}
+                {ev.eventTypes && ev.eventTypes.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.2rem', marginBottom: '0.3rem' }}>
+                    {ev.eventTypes.map((type) => (
+                      <span key={type} style={{
+                        fontSize: '0.5rem', letterSpacing: '0.08em', textTransform: 'uppercase',
+                        padding: '0.05rem 0.3rem', border: '1px solid var(--border)',
+                        color: 'var(--text-muted)',
+                      }}>{type}</span>
+                    ))}
+                  </div>
+                )}
+                <div style={{
+                  fontSize: isEpochal ? '0.8rem' : '0.75rem',
+                  fontWeight: SIG_WEIGHT[sig] ?? 400,
+                  letterSpacing: isEpochal ? '0.06em' : '0',
+                  textTransform: isEpochal ? 'uppercase' : 'none',
+                  color: sig === 'standard' ? 'var(--text-secondary)' : 'var(--text-primary)',
+                  lineHeight: 1.4,
+                }}>
+                  {ev.title}
+                </div>
+                {ev.affectedMagi && ev.affectedMagi.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', marginTop: '0.35rem' }}>
+                    {ev.affectedMagi.map((id) => (
+                      <span key={id} style={{
+                        fontSize: '0.55rem', letterSpacing: '0.08em',
+                        color: MAGI_COLOR[id] ?? 'var(--text-muted)',
+                        border: `1px solid ${MAGI_COLOR[id] ?? 'var(--border)'}`,
+                        padding: '0.05rem 0.3rem',
+                      }}>
+                        {id}
+                      </span>
+                    ))}
+                  </div>
                 )}
               </div>
-              <div style={{
-                fontSize: ev.isMilestone ? '0.8rem' : '0.75rem',
-                color: ev.isMilestone ? 'var(--text-primary)' : 'var(--text-secondary)',
-                lineHeight: 1.4,
-              }}>
-                {ev.title}
-              </div>
-              {ev.affectedMagi && ev.affectedMagi.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', marginTop: '0.35rem' }}>
-                  {ev.affectedMagi.map((id) => (
-                    <span key={id} style={{
-                      fontSize: '0.55rem', letterSpacing: '0.08em',
-                      color: MAGI_COLOR[id] ?? 'var(--text-muted)',
-                      border: `1px solid ${MAGI_COLOR[id] ?? 'var(--border)'}`,
-                      padding: '0.05rem 0.3rem',
-                    }}>
-                      {id}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
 
           {/* Footer link */}
           <div style={{ marginTop: '1.5rem', paddingTop: '0.75rem', borderTop: '1px solid var(--border)' }}>

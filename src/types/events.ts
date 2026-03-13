@@ -1,13 +1,15 @@
 import type { MagiId, FictionalDate, EventType } from './magi';
 
+export type Significance = 'standard' | 'notable' | 'milestone' | 'epochal';
+
 export interface WorldEvent {
   id: string;
   title: string;
   description: string;
   fictionalDate: FictionalDate;
   affectedMagi: MagiId[];
-  eventType: EventType;
-  isMilestone: boolean;
+  eventTypes: EventType[];
+  significance: Significance;
   injectedAt: string;
 }
 
@@ -16,8 +18,8 @@ export interface EventInjectRequest {
   description: string;
   fictionalDate: FictionalDate;
   affectedMagi: MagiId[];
-  eventType: EventType;
-  isMilestone?: boolean;
+  eventTypes: EventType[];
+  significance?: Significance;
   informedMagi?: Partial<Record<MagiId, string>>;
   notInformedMagi?: Partial<Record<MagiId, string>>;
   authorNote?: string;

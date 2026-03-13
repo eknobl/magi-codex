@@ -16,8 +16,8 @@ export async function PATCH(req: Request, { params }: RouteContext) {
     fictionalMonth: string;
     fictionalDay: number;
     affectedMagi: string[];
-    eventType: string;
-    isMilestone: boolean;
+    eventTypes: string[];
+    significance: string;
     status: string;
   }>;
 
