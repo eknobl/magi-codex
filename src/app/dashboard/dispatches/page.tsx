@@ -6,10 +6,14 @@ import { YEAR_BASE } from '@/lib/constants';
 
 export const dynamic = 'force-dynamic';
 
-// Strip MAGI/domain from the generated dispatch header — keep only the date.
-// "[Year 0, January 11 — TENGRI / Mobility, Logistics, Coordination]" → "[Year 0, January 11]"
+// Clean the generated dispatch header: strip MAGI/domain, convert DB year to narrative year.
+// "[Year 0, January 11 — TENGRI / Mobility, Logistics, Coordination]" → "[2039, January 11]"
+// "[Year 0, January 11]" → "[2039, January 11]"
 function stripDispatchHeader(content: string): string {
-  return content.replace(/^(\[Year \d+, \w+ \d+) — [A-Z]+ \/ [^\]]+\]/, '$1]');
+  return content.replace(
+    /^\[Year (\d+), (\w+ \d+)[^\]]*\]/,
+    (_, year, date) => `[${Number(year) + YEAR_BASE}, ${date}]`
+  );
 }
 
 // ── Year mapping ──────────────────────────────────────────────────────────────
