@@ -216,7 +216,7 @@ export default async function DispatchesPage() {
                 </div>
                 {ev.description && (
                   <div style={{
-                    fontSize: '0.7rem', color: 'var(--text-muted)',
+                    fontSize: '0.7rem', color: 'var(--white)',
                     lineHeight: 1.5, marginTop: '0.25rem',
                   }}>
                     {ev.description}
