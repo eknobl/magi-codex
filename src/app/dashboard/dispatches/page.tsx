@@ -2,8 +2,18 @@ import { db } from '@/db';
 import { dispatches, magiStates, worldEvents } from '@/db/schema';
 import { desc, eq, asc } from 'drizzle-orm';
 import Link from 'next/link';
+import { cookies } from 'next/headers';
+import { createHash } from 'crypto';
 import { YEAR_BASE } from '@/lib/constants';
 import DispatchCard from '@/components/DispatchCard';
+
+async function getIsAuthor(): Promise<boolean> {
+  const jar = await cookies();
+  const token = jar.get('magi-session')?.value;
+  const secret = process.env.DASHBOARD_SECRET;
+  if (!token || !secret) return false;
+  return token === createHash('sha256').update(secret).digest('hex');
+}
 
 export const dynamic = 'force-dynamic';
 
@@ -77,6 +87,8 @@ interface DayGroup {
 }
 
 export default async function DispatchesPage() {
+  const isAuthor = await getIsAuthor();
+
   // ── Fetch dispatches ────────────────────────────────────────────────────────
   const dispatchRows = await db
     .select({
@@ -286,6 +298,7 @@ export default async function DispatchesPage() {
                     content={stripDispatchHeader(entry.content)}
                     tokensUsed={entry.tokensUsed}
                     color={MAGI_COLOR[entry.magiId] ?? 'var(--accent)'}
+                    isAuthor={isAuthor}
                   />
                 ))}
               </div>

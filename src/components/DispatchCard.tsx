@@ -10,9 +10,10 @@ interface DispatchCardProps {
   content: string;
   tokensUsed: number | null;
   color: string;
+  isAuthor?: boolean;
 }
 
-export default function DispatchCard({ id, magiId, domain, content, tokensUsed, color }: DispatchCardProps) {
+export default function DispatchCard({ id, magiId, domain, content, tokensUsed, color, isAuthor = false }: DispatchCardProps) {
   const [editing, setEditing] = useState(false);
   const [displayed, setDisplayed] = useState(content);
   const [draft, setDraft] = useState(content);
@@ -152,7 +153,7 @@ export default function DispatchCard({ id, magiId, domain, content, tokensUsed, 
               {saving ? 'SAVING...' : 'SAVE'}
             </button>
           </div>
-        ) : (
+        ) : isAuthor ? (
           <button
             onClick={() => { setDraft(displayed); setEditing(true); }}
             style={{
@@ -164,7 +165,7 @@ export default function DispatchCard({ id, magiId, domain, content, tokensUsed, 
           >
             EDIT
           </button>
-        )}
+        ) : null}
       </div>
     </article>
   );
