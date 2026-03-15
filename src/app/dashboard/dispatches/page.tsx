@@ -185,7 +185,7 @@ export default async function DispatchesPage() {
                   <span style={{ fontSize: '0.6rem', color: STATUS_COLOR[ev.status] ?? 'var(--text-muted)' }}>
                     {STATUS_GLYPH[ev.status] ?? '○'}
                   </span>
-                  <span style={{ fontSize: '0.6rem', letterSpacing: '0.1em', color: 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '0.6rem', letterSpacing: '0.1em', color: 'var(--white)' }}>
                     {toYear(ev.fictionalYear)} {ev.fictionalMonth.slice(0, 3).toUpperCase()}
                   </span>
                   {glyph && (
@@ -199,7 +199,7 @@ export default async function DispatchesPage() {
                       <span key={type} style={{
                         fontSize: '0.5rem', letterSpacing: '0.08em', textTransform: 'uppercase',
                         padding: '0.05rem 0.3rem', border: '1px solid var(--border)',
-                        color: 'var(--text-muted)',
+                        color: 'var(--white)',
                       }}>{type}</span>
                     ))}
                   </div>
@@ -209,7 +209,7 @@ export default async function DispatchesPage() {
                   fontWeight: SIG_WEIGHT[sig] ?? 400,
                   letterSpacing: isEpochal ? '0.06em' : '0',
                   textTransform: isEpochal ? 'uppercase' : 'none',
-                  color: sig === 'standard' ? 'var(--text-secondary)' : 'var(--text-primary)',
+                  color: 'var(--white)',
                   lineHeight: 1.4,
                 }}>
                   {ev.title}
