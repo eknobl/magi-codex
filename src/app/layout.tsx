@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Orbitron, Share_Tech_Mono, Kode_Mono } from 'next/font/google';
 import './globals.css';
-import NavBar from '@/components/NavBar';
+import { Banner } from '@/components/Banner';
 
 const orbitron = Orbitron({
   variable: '--font-orbitron',
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${orbitron.variable} ${shareTechMono.variable} ${kodeMono.variable}`}>
-        <NavBar />
+        <Banner />
         {children}
       </body>
     </html>
