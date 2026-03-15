@@ -3,6 +3,7 @@ import { dispatches, magiStates, worldEvents } from '@/db/schema';
 import { desc, eq, asc } from 'drizzle-orm';
 import Link from 'next/link';
 import { YEAR_BASE } from '@/lib/constants';
+import DispatchCard from '@/components/DispatchCard';
 
 export const dynamic = 'force-dynamic';
 
@@ -276,62 +277,17 @@ export default async function DispatchesPage() {
                 gap: '0.75rem',
                 alignItems: 'start',
               }}>
-                {day.entries.map((entry) => {
-                  const color = MAGI_COLOR[entry.magiId] ?? 'var(--accent)';
-                  const isFull = (entry.tokensUsed ?? 0) > 300;
-                  return (
-                    <article
-                      key={entry.id}
-                      style={{
-                        background: 'var(--surface)',
-                        border: '1px solid var(--border)',
-                        borderTop: `2px solid ${color}`,
-                        padding: '1rem',
-                      }}
-                    >
-                      {/* Card header */}
-                      <div style={{
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                        marginBottom: '0.6rem', paddingBottom: '0.6rem', borderBottom: '1px solid var(--border)',
-                      }}>
-                        <Link
-                          href={`/dashboard/${entry.magiId.toLowerCase()}`}
-                          style={{ color, letterSpacing: '0.15em', fontSize: '0.8rem' }}
-                        >
-                          {entry.magiId}
-                        </Link>
-                        <span style={{
-                          fontSize: '0.55rem', letterSpacing: '0.1em',
-                          color: isFull ? 'var(--accent)' : 'var(--text-muted)',
-                          border: `1px solid ${isFull ? 'var(--accent-dim)' : 'var(--border)'}`,
-                          padding: '0.1rem 0.35rem',
-                        }}>
-                          {isFull ? 'FULL' : 'BRIEF'}
-                        </span>
-                      </div>
-
-                      {/* Domain */}
-                      <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: '0.6rem', letterSpacing: '0.05em' }}>
-                        {entry.domain}
-                      </div>
-
-                      {/* Content */}
-                      <p style={{
-                        fontSize: '0.78rem', lineHeight: '1.75',
-                        color: 'var(--text-secondary)', whiteSpace: 'pre-wrap', margin: 0,
-                      }}>
-                        {stripDispatchHeader(entry.content)}
-                      </p>
-
-                      {/* Token count */}
-                      {entry.tokensUsed && (
-                        <div style={{ marginTop: '0.6rem', paddingTop: '0.4rem', borderTop: '1px solid var(--border)', fontSize: '0.6rem', color: 'var(--text-muted)' }}>
-                          {entry.tokensUsed} tokens
-                        </div>
-                      )}
-                    </article>
-                  );
-                })}
+                {day.entries.map((entry) => (
+                  <DispatchCard
+                    key={entry.id}
+                    id={entry.id}
+                    magiId={entry.magiId}
+                    domain={entry.domain}
+                    content={stripDispatchHeader(entry.content)}
+                    tokensUsed={entry.tokensUsed}
+                    color={MAGI_COLOR[entry.magiId] ?? 'var(--accent)'}
+                  />
+                ))}
               </div>
             </div>
           ))}
