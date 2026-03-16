@@ -41,6 +41,7 @@ export const dispatches = pgTable(
     content: text('content').notNull(),
     promptUsed: text('prompt_used'),
     tokensUsed: integer('tokens_used'),
+    periodType: text('period_type').notNull().default('standard'),
     createdAt: timestamp('created_at').defaultNow().notNull(),
   },
   (table) => ({
@@ -72,6 +73,8 @@ export const systemClock = pgTable('system_clock', {
   fictionalYear: integer('fictional_year').notNull().default(0),
   fictionalMonth: text('fictional_month').notNull().default('January'),
   fictionalDay: integer('fictional_day').notNull().default(1),
+  periodType: text('period_type').notNull().default('standard'),
+  incidentPostsRemaining: integer('incident_posts_remaining').notNull().default(0),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 

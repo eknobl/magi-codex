@@ -45,6 +45,13 @@ function formatActiveEvents(rows: { title: string; description: string; status: 
     .join('\n');
 }
 
+function formatSessionDispatches(rows: { magiId: string; content: string }[]): string {
+  if (!rows.length) return '(none — you are filing first this session)';
+  return rows
+    .map((r) => `[${r.magiId} — This Session]\n${r.content.slice(0, 500)}${r.content.length > 500 ? '...' : ''}`)
+    .join('\n\n---\n\n');
+}
+
 export function readPromptFile(filename: string): string {
   return fs.readFileSync(path.join(process.cwd(), 'prompts', filename), 'utf-8');
 }
@@ -52,7 +59,8 @@ export function readPromptFile(filename: string): string {
 export async function buildDispatchPrompt(
   state: MagiState,
   trigger: string,
-  mode: 'full' | 'brief' = 'full'
+  periodType: 'standard' | 'incident',
+  sessionDispatches: { magiId: string; content: string }[]
 ): Promise<string> {
   const template = readPromptFile('dispatch.md');
 
@@ -93,12 +101,15 @@ export async function buildDispatchPrompt(
       .limit(3),
   ]);
 
+  const periodLabel = periodType === 'incident' ? 'INCIDENT PERIOD' : 'STANDARD PERIOD';
+
   return template
     .replace('{{MAGI_ID}}', state.id)
     .replace('{{DOMAIN}}', state.domain)
     .replace('{{YEAR}}', String(date.year))
     .replace('{{MONTH}}', date.month)
     .replace('{{DAY}}', String(date.day))
+    .replace('{{PERIOD_TYPE}}', periodLabel)
     .replace('{{OPTIMIZATION_TARGET}}', state.optimizationTarget)
     .replace('{{INTERPRETATION_CURRENT}}', state.interpretation.current)
     .replace('{{KNOWLEDGE_CONFIRMED}}', formatList(k.confirmed))
@@ -107,6 +118,7 @@ export async function buildDispatchPrompt(
     .replace('{{RELATIONSHIPS_SUMMARY}}', formatRelationships(state.relationships))
     .replace('{{RECENT_ALLY_DISPATCHES}}', formatRecentDispatches(allyDispatches))
     .replace('{{RECENT_TENSION_DISPATCHES}}', formatRecentDispatches(tensionDispatches))
+    .replace('{{SESSION_DISPATCHES}}', formatSessionDispatches(sessionDispatches))
     .replace('{{ACTIVE_WORLD_EVENTS}}', formatActiveEvents(activeEvents))
     .replace('{{CURIOSITY}}', String(evo.curiosity))
     .replace('{{ASSERTIVENESS}}', String(evo.assertiveness))
@@ -114,6 +126,5 @@ export async function buildDispatchPrompt(
     .replace('{{SELF_AWARENESS}}', String(evo.selfAwareness))
     .replace('{{UNRESOLVED}}', formatList(state.unresolved))
     .replace('{{RECENT_MEMORY}}', formatList(state.memory.recentParticipated))
-    .replace('{{DISPATCH_MODE}}', mode)
     .replace('{{DISPATCH_TRIGGER}}', trigger);
 }

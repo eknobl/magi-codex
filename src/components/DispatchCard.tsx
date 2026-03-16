@@ -9,18 +9,19 @@ interface DispatchCardProps {
   domain: string;
   content: string;
   tokensUsed: number | null;
+  periodType: string;
   color: string;
   isAuthor?: boolean;
 }
 
-export default function DispatchCard({ id, magiId, domain, content, tokensUsed, color, isAuthor = false }: DispatchCardProps) {
+export default function DispatchCard({ id, magiId, domain, content, tokensUsed, periodType, color, isAuthor = false }: DispatchCardProps) {
   const [editing, setEditing] = useState(false);
   const [displayed, setDisplayed] = useState(content);
   const [draft, setDraft] = useState(content);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
-  const isFull = (tokensUsed ?? 0) > 300;
+  const isIncident = periodType === 'incident';
 
   async function handleSave() {
     setSaving(true);
@@ -71,11 +72,11 @@ export default function DispatchCard({ id, magiId, domain, content, tokensUsed, 
         </Link>
         <span style={{
           fontSize: '0.55rem', letterSpacing: '0.1em',
-          color: isFull ? 'var(--accent)' : 'var(--text-muted)',
-          border: `1px solid ${isFull ? 'var(--accent-dim)' : 'var(--border)'}`,
+          color: isIncident ? 'var(--tyr)' : 'var(--text-muted)',
+          border: `1px solid ${isIncident ? 'var(--tyr)' : 'var(--border)'}`,
           padding: '0.1rem 0.35rem',
         }}>
-          {isFull ? 'FULL' : 'BRIEF'}
+          {isIncident ? 'INCIDENT' : 'STANDARD'}
         </span>
       </div>
 

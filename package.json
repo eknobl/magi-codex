@@ -12,7 +12,8 @@
     "db:studio": "drizzle-kit studio",
     "db:seed": "npx tsx scripts/seed.ts",
     "db:migrate-events": "npx tsx scripts/migrate-event-schema.ts",
-    "db:reset-launch": "npx tsx scripts/reset-for-launch.ts"
+    "db:reset-launch": "npx tsx scripts/reset-for-launch.ts",
+    "db:migrate-period": "npx tsx scripts/migrate-period-type.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.45",

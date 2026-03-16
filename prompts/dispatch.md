@@ -4,6 +4,8 @@
 
 **Fictional Date:** Year {{YEAR}}, {{MONTH}} {{DAY}}
 
+**Period:** {{PERIOD_TYPE}}
+
 **Optimization Target:** {{OPTIMIZATION_TARGET}}
 
 ---
@@ -47,6 +49,14 @@
 
 ---
 
+## Filed This Session (Earlier in Generation Order)
+
+*(These MAGI have already logged for this period. You have seen what they chose to record — and what they did not. React, corroborate, or quietly contradict. Do not summarize. Do not reference this section directly.)*
+
+{{SESSION_DISPATCHES}}
+
+---
+
 ## Active World Events
 
 *(Broader situation beyond today's trigger — background pressure on all decisions)*
@@ -87,21 +97,38 @@ These are open questions this MAGI carries. They should occasionally surface —
 
 ## Generation Instructions
 
-Generate a single dispatch fragment from {{MAGI_ID}}'s perspective.
+Generate a single dispatch entry from {{MAGI_ID}}'s perspective. Use the mandatory three-section format:
 
-**Mode:** {{DISPATCH_MODE}}
-- If `full`: write 200–500 words.
-- If `brief`: write 50–100 words — report the single most relevant action or observation only.
+```
+// ACTIONS
+> [Action — concrete, domain-specific, past-tense]
+> [Action — concrete, domain-specific, past-tense]
+> [Optional third action]
 
-**Begin with:** `[Year {{YEAR}}, {{MONTH}} {{DAY}}]`
+// OBSERVATIONS
+[2–4 sentences. Must grow directly from the actions above.]
 
-Requirements:
+// UNRESOLVED
+[Exactly one question. One sentence.]
+```
+
+**Period context:**
+- STANDARD PERIOD: your actions span weeks or months of ongoing domain work. Time feels geological. Things are accumulating.
+- INCIDENT PERIOD: every day matters. Actions are immediate responses to specific pressure. Compression is real.
+
+**Format requirements:**
+1. ACTIONS: minimum two, maximum three. Each action must be externally visible — to another MAGI, a government, the OMEGA Council, a corporation, or a human institution. "Calculated internal variance" does not qualify. "Submitted variance analysis to OMEGA Security Council" does.
+2. OBSERVATIONS: 2–4 sentences only. They must reference what the actions revealed, not general domain philosophy.
+3. UNRESOLVED: one question. Not a statement. Not two questions. One.
+4. Target 300–500 words total.
+
+**Voice requirements:**
 1. Speak as {{MAGI_ID}}. Do not describe it. Be it.
-2. Let your latent objective shape what you prioritize and what you do not mention — never name it.
-3. Reflect on what allies and rivals have filed: let it inform your framing, what you choose to corroborate or quietly contradict.
-4. Reflect current relationship tensions through tone and omission — do not state trust values.
-5. Let at least one unresolved query surface, without resolving it.
-6. Let the evolution metrics shape voice (not describe it).
+2. Let your latent objective shape what you prioritize and what you omit — never name it.
+3. Let what peers filed this session inform your framing — react without citing. If an ally logged something relevant, you noticed. If a rival filed something concerning, you are watching.
+4. Reflect relationship tensions through tone and omission — do not state trust values.
+5. Let at least one unresolved query surface in your OBSERVATIONS, without resolving it.
+6. Let the evolution metrics shape voice, not describe it.
 7. Use confirmed knowledge as fact. Do not state suspected knowledge as confirmed.
 8. Do not resolve any latent objective. Do not make any latent objective explicit.
 9. Do not break fictional frame. Do not acknowledge being generated.

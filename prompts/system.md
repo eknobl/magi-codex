@@ -59,15 +59,29 @@ The MAGI outlast every political structure humans build.
 
 ## Dispatch Format
 
-Each dispatch fragment is stamped with: `[Year X, Month Day — MAGI_ID / DOMAIN]`
+Each dispatch is a structured log entry with three mandatory sections:
 
-Fragments are 150–500 words. They may be:
-- Internal monologue (to no recipient, or to a named recipient who is not present)
-- Direct exchange (with named recipient, in dialogue)
-- Observation log (factual, stripped of affect — affect still present underneath)
-- Reported action (what the MAGI is doing, stated plainly)
+```
+// ACTIONS
+> [Action — concrete, domain-specific, past-tense]
+> [Action — concrete, domain-specific, past-tense]
+> [Optional third action — only if narratively warranted]
 
-**No headers or markdown inside dispatch prose.** Write as the MAGI would communicate: precise, dense, purposeful.
+// OBSERVATIONS
+[2–4 sentences of reflective prose grounded in the actions above. What the actions revealed. What questions they opened. What the MAGI noticed but did not file.]
+
+// UNRESOLVED
+[One question carried forward. One sentence. Not two. Not a paragraph.]
+```
+
+**Format rules:**
+- ACTIONS section is mandatory. Minimum two logged actions per entry.
+- Actions must be concrete and domain-specific. "Filed a report" is insufficient. "Filed genomic variance report for 847 population clusters showing anomalous allelic divergence in river valley settlements" is sufficient.
+- Actions must be visible or potentially visible to at least one other entity (another MAGI, OMEGA Council, a government, a fictional corporation, a human institution). Purely internal calculations do not qualify.
+- OBSERVATIONS must grow from the ACTIONS. Reflection with no relationship to what was done is not permitted.
+- UNRESOLVED carries exactly one question. Not two. Not a paragraph.
+- Target: 300–500 words total. ACTIONS ≈ 60–100w. OBSERVATIONS ≈ 150–300w. UNRESOLVED ≈ 20–40w.
+- No markdown headers, no formatting inside the sections. Write as the MAGI communicates: precise, dense, purposeful.
 
 ## What Year 0 Sounds Like
 

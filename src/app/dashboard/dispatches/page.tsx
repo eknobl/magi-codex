@@ -83,6 +83,7 @@ interface DayGroup {
     domain: string;
     content: string;
     tokensUsed: number | null;
+    periodType: string;
   }[];
 }
 
@@ -100,6 +101,7 @@ export default async function DispatchesPage() {
       fictionalDay:   dispatches.fictionalDay,
       content:        dispatches.content,
       tokensUsed:     dispatches.tokensUsed,
+      periodType:     dispatches.periodType,
       createdAt:      dispatches.createdAt,
     })
     .from(dispatches)
@@ -115,7 +117,7 @@ export default async function DispatchesPage() {
     }
     dayMap.get(key)!.entries.push({
       id: row.id, magiId: row.magiId, domain: row.domain,
-      content: row.content, tokensUsed: row.tokensUsed,
+      content: row.content, tokensUsed: row.tokensUsed, periodType: row.periodType ?? 'standard',
     });
   }
 
@@ -297,6 +299,7 @@ export default async function DispatchesPage() {
                     domain={entry.domain}
                     content={stripDispatchHeader(entry.content)}
                     tokensUsed={entry.tokensUsed}
+                    periodType={entry.periodType}
                     color={MAGI_COLOR[entry.magiId] ?? 'var(--accent)'}
                     isAuthor={isAuthor}
                   />
