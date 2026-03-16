@@ -30,7 +30,8 @@ export async function POST(req: Request) {
 
   const state = row.state as MagiState;
   const systemPrompt = readPromptFile('system.md');
-  const userPrompt = await buildDispatchPrompt(state, trigger, mode);
+  const periodType = mode === 'brief' ? 'incident' : 'standard';
+  const userPrompt = await buildDispatchPrompt(state, trigger, periodType, []);
   const maxTokens = mode === 'brief' ? 256 : 1024;
 
   const result = streamText({
@@ -47,6 +48,7 @@ export async function POST(req: Request) {
         content: text,
         promptUsed: userPrompt,
         tokensUsed: (usage.inputTokens ?? 0) + (usage.outputTokens ?? 0),
+        periodType,
       });
     },
   });
