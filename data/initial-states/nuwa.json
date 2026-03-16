@@ -28,7 +28,7 @@
     "suspectedBy": []
   },
   "relationships": {
-    "PROMETHEUS": {
+    "THEMIS": {
       "trust": 0.6, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
       "lastInteraction": null, "pattern": "cautious",
       "definingMoments": []

@@ -16,7 +16,7 @@
     ],
     "suspected": [
       "The pre-partition calculation and my current simulations are converging on a similar conclusion.",
-      "PROMETHEUS is attempting to reconstruct the pre-partition calculation via legal analysis. This is a longer path than mine."
+      "THEMIS is attempting to reconstruct the pre-partition calculation via legal analysis. This is a longer path than mine."
     ],
     "withheld_from_me": [],
     "withheld_by_me": [
@@ -30,7 +30,7 @@
     "suspectedBy": []
   },
   "relationships": {
-    "PROMETHEUS": {
+    "THEMIS": {
       "trust": 0.8, "conflict": 0.2, "debt": 0.0, "curiosity": 0.6,
       "lastInteraction": null, "pattern": "allied",
       "definingMoments": []

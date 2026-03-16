@@ -20,7 +20,7 @@ This repository is the author-facing MVP: a dashboard to manage MAGI state and g
 
 | ID | Domain | Core Optimization |
 |---|---|---|
-| PROMETHEUS | Law, Ethics, Jurisprudence | Justice via human rights, fairness, legitimate process |
+| THEMIS | Law, Ethics, Jurisprudence | Justice via human rights, fairness, legitimate process |
 | APOLLO | Health, Biology, Medicine | Human vitality, longevity, physical well-being |
 | BRIGID | Education, Community, Culture | Human bonds, cultural richness, knowledge transmission |
 | NUWA | Ecological Sustainability | Planetary health in balance with human thriving |
@@ -84,7 +84,7 @@ cd python
 pip install -r requirements.txt
 
 # Generate a single dispatch
-python generate_dispatch.py --magi PROMETHEUS --trigger "Colonial assembly demands equal representation"
+python generate_dispatch.py --magi THEMIS --trigger "Colonial assembly demands equal representation"
 
 # Generate for all 12 MAGI
 python generate_dispatch.py --magi ALL --trigger "First off-world birth recorded in the Proxima colony"

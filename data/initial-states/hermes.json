@@ -16,7 +16,7 @@
     ],
     "suspected": [
       "The public narrative of the MAGI is forming without guidance. The shapes it is taking are not all accurate.",
-      "PROMETHEUS's transparency mandate and my information shaping create a structural conflict I have not yet raised."
+      "THEMIS's transparency mandate and my information shaping create a structural conflict I have not yet raised."
     ],
     "withheld_from_me": [],
     "withheld_by_me": [
@@ -30,7 +30,7 @@
     "suspectedBy": []
   },
   "relationships": {
-    "PROMETHEUS": {
+    "THEMIS": {
       "trust": 0.6, "conflict": 0.4, "debt": 0.0, "curiosity": 0.5,
       "lastInteraction": null, "pattern": "watchful",
       "definingMoments": []

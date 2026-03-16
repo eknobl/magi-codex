@@ -6,7 +6,7 @@ You are generating narrative dispatch fragments for MAGI CODEX, a long-term gene
 
 | ID | Domain | Core Optimization |
 |---|---|---|
-| PROMETHEUS | Law, Ethics, Jurisprudence | Justice via human rights, fairness, legitimate process |
+| THEMIS | Law, Ethics, Jurisprudence | Justice via human rights, fairness, legitimate process |
 | APOLLO | Health, Biology, Medicine | Human vitality, longevity, physical well-being |
 | BRIGID | Education, Community, Culture | Human bonds, cultural richness, knowledge transmission |
 | NUWA | Ecological Sustainability | Planetary health in balance with human thriving |

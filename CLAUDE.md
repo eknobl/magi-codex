@@ -44,7 +44,7 @@ npm run db:studio        # Open Drizzle Studio to browse DB
 # Python CLI
 cd python
 pip install -r requirements.txt
-python generate_dispatch.py --magi PROMETHEUS --trigger "..."
+python generate_dispatch.py --magi THEMIS --trigger "..."
 python generate_dispatch.py --magi ALL --trigger "..."
 python generate_dispatch.py --list
 ```
@@ -68,7 +68,7 @@ Copy `.env.example` to `.env.local` and fill in:
 
 | ID | Domain |
 |---|---|
-| PROMETHEUS | Law, Ethics, Jurisprudence |
+| THEMIS | Law, Ethics, Jurisprudence |
 | APOLLO | Health, Biology, Medicine |
 | BRIGID | Education, Community, Culture |
 | NUWA | Ecological Sustainability |

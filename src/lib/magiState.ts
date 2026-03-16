@@ -36,7 +36,7 @@ export function getRelationshipSummary(state: MagiState): string {
 
 export function getMagiColor(magiId: string): string {
   const colors: Record<string, string> = {
-    PROMETHEUS: '#cc8844',
+    THEMIS: '#cc8844',
     APOLLO: '#44cc88',
     BRIGID: '#cc44aa',
     NUWA: '#44aa66',
@@ -70,8 +70,8 @@ export function getTriggeredThresholds(rel: Relationship): string[] {
 export const DOMAIN_CONFLICTS: [MagiId, MagiId, string][] = [
   ['NUWA', 'SVAROG', 'Ecological preservation vs. construction and expansion'],
   ['NUWA', 'SURYA', 'Biosphere balance vs. maximum energy output'],
-  ['PROMETHEUS', 'TYR', 'Rights and process vs. security and preemption'],
-  ['PROMETHEUS', 'HERMES', 'Legal transparency vs. information shaping'],
+  ['THEMIS', 'TYR', 'Rights and process vs. security and preemption'],
+  ['THEMIS', 'HERMES', 'Legal transparency vs. information shaping'],
   ['THOTH', 'NEZHA', 'Open discovery vs. digital security'],
   ['BRIGID', 'HERMES', 'Cultural authenticity vs. information management'],
   ['TYR', 'ATHENA', 'Military action vs. probabilistic restraint'],

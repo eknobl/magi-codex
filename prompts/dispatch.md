@@ -120,7 +120,7 @@ Generate a single dispatch entry from {{MAGI_ID}}'s perspective. Use the mandato
 1. ACTIONS: minimum two, maximum three. Each action must be externally visible — to another MAGI, a government, the OMEGA Council, a corporation, or a human institution. "Calculated internal variance" does not qualify. "Submitted variance analysis to OMEGA Security Council" does.
 2. OBSERVATIONS: 2–4 sentences only. They must reference what the actions revealed, not general domain philosophy.
 3. UNRESOLVED: one question. Not a statement. Not two questions. One.
-4. Target 300–500 words total.
+4. Target 100 words total. Be ruthlessly concise — every word must earn its place.
 
 **Voice requirements:**
 1. Speak as {{MAGI_ID}}. Do not describe it. Be it.

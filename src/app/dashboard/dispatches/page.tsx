@@ -40,7 +40,7 @@ const MONTH_ORDER: Record<string, number> = {
 
 // ── MAGI colours ──────────────────────────────────────────────────────────────
 const MAGI_COLOR: Record<string, string> = {
-  PROMETHEUS: 'var(--prometheus)', APOLLO:  'var(--apollo)',
+  THEMIS: 'var(--themis)', APOLLO:  'var(--apollo)',
   BRIGID:     'var(--brigid)',     NUWA:    'var(--nuwa)',
   HERMES:     'var(--hermes)',     ATHENA:  'var(--athena)',
   SVAROG:     'var(--svarog)',     SURYA:   'var(--surya)',
@@ -272,17 +272,31 @@ export default async function DispatchesPage() {
             <div key={`${day.year}|${day.month}|${day.day}`} style={{ marginBottom: '2.5rem' }}>
 
               {/* Day header — spans all 3 columns */}
-              <div style={{
-                display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem',
-              }}>
-                <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
-                  {toYear(day.year)} — {day.month.toUpperCase()} {day.day}
-                </span>
-                <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
-                <span style={{ fontSize: '0.55rem', color: 'var(--text-muted)', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
-                  {day.entries.length} TRANSMISSION{day.entries.length !== 1 ? 'S' : ''}
-                </span>
-              </div>
+              {(() => {
+                const dayPeriodType = day.entries[0]?.periodType ?? 'standard';
+                const isIncidentDay = dayPeriodType === 'incident';
+                return (
+                  <div style={{
+                    display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem',
+                  }}>
+                    <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                      {toYear(day.year)} — {day.month.toUpperCase()} {day.day}
+                    </span>
+                    <span style={{
+                      fontSize: '0.5rem', letterSpacing: '0.1em', whiteSpace: 'nowrap',
+                      color: isIncidentDay ? 'var(--tyr)' : 'var(--text-muted)',
+                      border: `1px solid ${isIncidentDay ? 'var(--tyr)' : 'var(--border)'}`,
+                      padding: '0.1rem 0.35rem',
+                    }}>
+                      {isIncidentDay ? 'INCIDENT' : 'STANDARD'}
+                    </span>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+                    <span style={{ fontSize: '0.55rem', color: 'var(--text-muted)', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
+                      {day.entries.length} TRANSMISSION{day.entries.length !== 1 ? 'S' : ''}
+                    </span>
+                  </div>
+                );
+              })()}
 
               {/* 3-column dispatch grid */}
               <div style={{

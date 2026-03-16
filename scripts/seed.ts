@@ -15,7 +15,7 @@ import path from 'path';
 const INITIAL_STATES_DIR = path.join(process.cwd(), 'data', 'initial-states');
 
 const MAGI_FILES = [
-  'prometheus', 'apollo', 'brigid', 'nuwa',
+  'themis', 'apollo', 'brigid', 'nuwa',
   'hermes', 'athena', 'svarog', 'surya',
   'tyr', 'tengri', 'thoth', 'nezha',
 ];

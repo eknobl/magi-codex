@@ -1,5 +1,5 @@
 export type MagiId =
-  | 'PROMETHEUS'
+  | 'THEMIS'
   | 'APOLLO'
   | 'BRIGID'
   | 'NUWA'
@@ -13,7 +13,7 @@ export type MagiId =
   | 'NEZHA';
 
 export const MAGI_IDS: MagiId[] = [
-  'PROMETHEUS', 'APOLLO', 'BRIGID', 'NUWA',
+  'THEMIS', 'APOLLO', 'BRIGID', 'NUWA',
   'HERMES', 'ATHENA', 'SVAROG', 'SURYA',
   'TYR', 'TENGRI', 'THOTH', 'NEZHA',
 ];

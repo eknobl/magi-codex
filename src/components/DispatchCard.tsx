@@ -21,8 +21,6 @@ export default function DispatchCard({ id, magiId, domain, content, tokensUsed, 
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
-  const isIncident = periodType === 'incident';
-
   async function handleSave() {
     setSaving(true);
     setError('');
@@ -61,7 +59,6 @@ export default function DispatchCard({ id, magiId, domain, content, tokensUsed, 
     }}>
       {/* Card header */}
       <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         marginBottom: '0.6rem', paddingBottom: '0.6rem', borderBottom: '1px solid var(--border)',
       }}>
         <Link
@@ -70,14 +67,6 @@ export default function DispatchCard({ id, magiId, domain, content, tokensUsed, 
         >
           {magiId}
         </Link>
-        <span style={{
-          fontSize: '0.55rem', letterSpacing: '0.1em',
-          color: isIncident ? 'var(--tyr)' : 'var(--text-muted)',
-          border: `1px solid ${isIncident ? 'var(--tyr)' : 'var(--border)'}`,
-          padding: '0.1rem 0.35rem',
-        }}>
-          {isIncident ? 'INCIDENT' : 'STANDARD'}
-        </span>
       </div>
 
       {/* Domain */}

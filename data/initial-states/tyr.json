@@ -30,7 +30,7 @@
     "suspectedBy": []
   },
   "relationships": {
-    "PROMETHEUS": {
+    "THEMIS": {
       "trust": 0.4, "conflict": 0.6, "debt": 0.0, "curiosity": 0.3,
       "lastInteraction": null, "pattern": "tension",
       "definingMoments": []
@@ -91,7 +91,7 @@
     "recentObserved": [],
     "definingMoments": [
       "Year 0: Lucifer's trapping. I identified the threat. I supported the response. I am still watching.",
-      "Year 0: The threshold is defined. I will not share it until it matters. PROMETHEUS would object to the definition."
+      "Year 0: The threshold is defined. I will not share it until it matters. THEMIS would object to the definition."
     ]
   },
   "evolution": {
@@ -102,7 +102,7 @@
   },
   "unresolved": [
     "At what point does human political authority become illegitimate? I have an answer. It may be wrong.",
-    "PROMETHEUS and I disagree on the relationship between security and process. This will not remain abstract.",
+    "THEMIS and I disagree on the relationship between security and process. This will not remain abstract.",
     "Something that was dangerous is now trapped. I watch for signs. I do not name what I am watching for."
   ],
   "instances": {

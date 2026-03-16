@@ -3,7 +3,7 @@
 generate_dispatch.py — CLI dispatch generator for MAGI CODEX
 
 Usage:
-  python generate_dispatch.py --magi PROMETHEUS --trigger "A new trade agreement..."
+  python generate_dispatch.py --magi THEMIS --trigger "A new trade agreement..."
   python generate_dispatch.py --magi ALL --trigger "Colonial assembly demands representation."
   python generate_dispatch.py --list
 """
@@ -24,7 +24,7 @@ from state_manager import get_magi_state, get_all_magi_states, save_dispatch
 from prompt_builder import build_dispatch_prompt
 
 MAGI_IDS = [
-    "PROMETHEUS", "APOLLO", "BRIGID", "NUWA",
+    "THEMIS", "APOLLO", "BRIGID", "NUWA",
     "HERMES", "ATHENA", "SVAROG", "SURYA",
     "TYR", "TENGRI", "THOTH", "NEZHA",
 ]
@@ -81,7 +81,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python generate_dispatch.py --magi PROMETHEUS --trigger "Colonial assembly demands representation"
+  python generate_dispatch.py --magi THEMIS --trigger "Colonial assembly demands representation"
   python generate_dispatch.py --magi ATHENA --trigger "First off-world birth recorded"
   python generate_dispatch.py --magi ALL --trigger "OMEGA vote on colonial representation fails"
   python generate_dispatch.py --list
@@ -91,7 +91,7 @@ Examples:
         "--magi",
         type=str,
         default=None,
-        help="MAGI ID to generate for (e.g. PROMETHEUS), or ALL for all 12",
+        help="MAGI ID to generate for (e.g. THEMIS), or ALL for all 12",
     )
     parser.add_argument(
         "--trigger",

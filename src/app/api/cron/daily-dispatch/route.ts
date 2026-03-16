@@ -23,7 +23,7 @@ const SIG_INCIDENT_POSTS: Record<string, number> = {
 
 // Fixed generation order — each MAGI sees all dispatches filed before it this session
 const GENERATION_ORDER = [
-  'PROMETHEUS', 'ATHENA', 'TYR', 'NEZHA', 'TENGRI',
+  'THEMIS', 'ATHENA', 'TYR', 'NEZHA', 'TENGRI',
   'SVAROG', 'SURYA', 'NUWA', 'APOLLO', 'BRIGID', 'THOTH', 'HERMES',
 ];
 

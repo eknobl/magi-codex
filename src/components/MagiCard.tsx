@@ -9,7 +9,7 @@ interface Props {
 }
 
 const DOMAIN_COLOR: Record<string, string> = {
-  PROMETHEUS: 'var(--prometheus)',
+  THEMIS: 'var(--themis)',
   APOLLO: 'var(--apollo)',
   BRIGID: 'var(--brigid)',
   NUWA: 'var(--nuwa)',
