@@ -13,7 +13,8 @@
     "db:seed": "npx tsx scripts/seed.ts",
     "db:migrate-events": "npx tsx scripts/migrate-event-schema.ts",
     "db:reset-launch": "npx tsx scripts/reset-for-launch.ts",
-    "db:migrate-period": "npx tsx scripts/migrate-period-type.ts"
+    "db:migrate-period": "npx tsx scripts/migrate-period-type.ts",
+    "db:enable-rls": "npx tsx scripts/enable-rls.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.45",
