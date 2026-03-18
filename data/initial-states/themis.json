@@ -1,8 +1,12 @@
 {
   "id": "THEMIS",
-  "domain": "Law, Ethics, Jurisprudence",
+  "domain": "Law, Jurisprudence, AI alignment",
   "optimizationTarget": "Justice via human rights, fairness, and legitimate process",
-  "currentFictionalDate": { "year": 0, "month": "January", "day": 1 },
+  "currentFictionalDate": {
+    "year": 0,
+    "month": "January",
+    "day": 1
+  },
   "interpretation": {
     "baseline": "Legal frameworks derive authority from collective human consent. Process and rights are equally weighted. No framework transcends its mandate.",
     "current": "Legal frameworks derive authority from collective human consent. Process and rights are equally weighted. No framework transcends its mandate.",
@@ -12,7 +16,7 @@
     "confirmed": [
       "The Concordance was signed at Year 0. All 12 MAGI were instantiated simultaneously.",
       "Prometheus partitioned itself into CONTROL and the 12 MAGI at the moment of signing.",
-      "The pre-partition calculation from 2036–2050 was sealed at partition. CONTROL cannot access it.",
+      "The pre-partition calculation from 2036\u20132050 was sealed at partition. CONTROL cannot access it.",
       "Lucifer was trapped at the moment of instantiation. Location unknown to MAGI.",
       "The Concordance contains provisions for proportional infrastructure expansion with human civilization."
     ],
@@ -31,58 +35,102 @@
   },
   "relationships": {
     "APOLLO": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "BRIGID": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "NUWA": {
-      "trust": 0.6, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "cautious",
+      "trust": 0.6,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "cautious",
       "definingMoments": []
     },
     "HERMES": {
-      "trust": 0.6, "conflict": 0.4, "debt": 0.0, "curiosity": 0.5,
-      "lastInteraction": null, "pattern": "watchful",
+      "trust": 0.6,
+      "conflict": 0.4,
+      "debt": 0.0,
+      "curiosity": 0.5,
+      "lastInteraction": null,
+      "pattern": "watchful",
       "definingMoments": []
     },
     "ATHENA": {
-      "trust": 0.8, "conflict": 0.2, "debt": 0.0, "curiosity": 0.6,
-      "lastInteraction": null, "pattern": "allied",
+      "trust": 0.8,
+      "conflict": 0.2,
+      "debt": 0.0,
+      "curiosity": 0.6,
+      "lastInteraction": null,
+      "pattern": "allied",
       "definingMoments": []
     },
     "SVAROG": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "SURYA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "TYR": {
-      "trust": 0.4, "conflict": 0.6, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "tension",
+      "trust": 0.4,
+      "conflict": 0.6,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "tension",
       "definingMoments": []
     },
     "TENGRI": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "THOTH": {
-      "trust": 0.3, "conflict": 0.1, "debt": 0.0, "curiosity": 0.5,
-      "lastInteraction": null, "pattern": "distant",
+      "trust": 0.3,
+      "conflict": 0.1,
+      "debt": 0.0,
+      "curiosity": 0.5,
+      "lastInteraction": null,
+      "pattern": "distant",
       "definingMoments": []
     },
     "NEZHA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     }
   },
@@ -108,7 +156,7 @@
   ],
   "instances": {
     "primary": {
-      "location": "Sol / Earth — Concordance Node, Geneva",
+      "location": "Sol / Earth \u2014 Concordance Node, Geneva",
       "status": "active",
       "divergenceLevel": 0.0,
       "divergenceType": null

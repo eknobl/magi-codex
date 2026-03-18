@@ -1,11 +1,5 @@
 /**
- * Fix mismatched MAGI domains and optimization targets.
- *
- * The seed JSONs were assigned with wrong character archetypes for
- * APOLLO, ATHENA, BRIGID, and TYR. This migration patches the
- * `domain` column and state->>'domain' / state->>'optimizationTarget'
- * to the canonical values for each MAGI.
- *
+ * Apply canonical MAGI domains and optimization targets.
  * Usage: npm run db:fix-domains
  */
 
@@ -16,58 +10,43 @@ import { db } from '../src/db';
 import { magiStates } from '../src/db/schema';
 import { eq, sql } from 'drizzle-orm';
 
-const FIXES: {
-  id: string;
-  domain: string;
-  optimizationTarget: string;
-}[] = [
-  {
-    id: 'APOLLO',
-    domain: 'Prediction, Probability, Strategy',
-    optimizationTarget: 'Accurate prediction to mitigate suffering and maximize opportunity',
-  },
-  {
-    id: 'ATHENA',
-    domain: 'Military, Defense, Deterrence',
-    optimizationTarget: 'Maintain security and deterrence through strategic analysis and defensive readiness',
-  },
-  {
-    id: 'BRIGID',
-    domain: 'Medicine, Welfare, Biosystems',
-    optimizationTarget: 'Human vitality, longevity, and physical well-being',
-  },
-  {
-    id: 'TYR',
-    domain: 'Security, Enforcement, Crisis Response',
-    optimizationTarget: 'Security, stability, and protection through decisive enforcement and crisis intervention',
-  },
+const CANONICAL: { id: string; domain: string; optimizationTarget: string }[] = [
+  { id: 'APOLLO',  domain: 'Health, Biology, Medicine',               optimizationTarget: 'Human vitality, longevity, and physical well-being' },
+  { id: 'ATHENA',  domain: 'Forecasting, Probability, Strategy',      optimizationTarget: 'Accurate prediction to mitigate suffering and maximize opportunity' },
+  { id: 'BRIGID',  domain: 'Education, Community, Culture',           optimizationTarget: 'Human bonds, cultural richness, and knowledge transmission' },
+  { id: 'HERMES',  domain: 'Communication, Information Networks',     optimizationTarget: 'Free and accurate information flow for collective understanding' },
+  { id: 'NEZHA',   domain: 'Cybersecurity, Digital Integrity',        optimizationTarget: 'Security and stability of all AI systems, including the MAGI' },
+  { id: 'NUWA',    domain: 'Ecological Sustainability',               optimizationTarget: 'Planetary health in balance with human thriving' },
+  { id: 'SURYA',   domain: 'Energy Production, Distribution',         optimizationTarget: 'Maximum energy output with minimal waste and risk' },
+  { id: 'SVAROG',  domain: 'Manufacturing, Engineering, Construction', optimizationTarget: 'Efficient, durable, and effective design' },
+  { id: 'TENGRI',  domain: 'Mobility, Logistics, Coordination',       optimizationTarget: 'Efficient flow of people, goods, and vessels' },
+  { id: 'THEMIS',  domain: 'Law, Jurisprudence, AI alignment',        optimizationTarget: 'Justice via human rights, fairness, and legitimate process' },
+  { id: 'THOTH',   domain: 'Scientific Discovery, Research',          optimizationTarget: 'Expansion of knowledge and perfection of understanding' },
+  { id: 'TYR',     domain: 'Strategic Defense, Military Analysis',    optimizationTarget: 'Security, stability, and minimal tactical vulnerability' },
 ];
 
 async function main() {
-  for (const fix of FIXES) {
+  for (const c of CANONICAL) {
     await db
       .update(magiStates)
       .set({
-        domain: fix.domain,
-        optimizationTarget: fix.optimizationTarget,
+        domain: c.domain,
+        optimizationTarget: c.optimizationTarget,
         state: sql`jsonb_set(
           jsonb_set(
             state,
             '{domain}',
-            ${JSON.stringify(fix.domain)}::jsonb
+            ${JSON.stringify(c.domain)}::jsonb
           ),
           '{optimizationTarget}',
-          ${JSON.stringify(fix.optimizationTarget)}::jsonb
+          ${JSON.stringify(c.optimizationTarget)}::jsonb
         )`,
       })
-      .where(eq(magiStates.id, fix.id));
-    console.log(`✓ Fixed ${fix.id}: ${fix.domain}`);
+      .where(eq(magiStates.id, c.id));
+    console.log(`✓ ${c.id}: ${c.domain}`);
   }
   console.log('\nDone.');
   process.exit(0);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+main().catch((err) => { console.error(err); process.exit(1); });
