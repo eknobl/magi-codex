@@ -48,18 +48,18 @@ async function main() {
   }
 
   // 3. Re-point dispatches FK
-  const { rowCount: dispatchCount } = await db
+  await db
     .update(dispatches)
     .set({ magiId: 'THEMIS' })
     .where(eq(dispatches.magiId, 'PROMETHEUS'));
-  console.log(`✓ Updated ${dispatchCount ?? 0} dispatch rows`);
+  console.log('✓ Updated dispatch rows');
 
   // 4. Re-point evolution_log FK
-  const { rowCount: evoCount } = await db
+  await db
     .update(evolutionLog)
     .set({ magiId: 'THEMIS' })
     .where(eq(evolutionLog.magiId, 'PROMETHEUS'));
-  console.log(`✓ Updated ${evoCount ?? 0} evolution_log rows`);
+  console.log('✓ Updated evolution_log rows');
 
   // 5. Update relationship_snapshots text columns
   await db.execute(sql`UPDATE relationship_snapshots SET magi_a = 'THEMIS' WHERE magi_a = 'PROMETHEUS'`);
