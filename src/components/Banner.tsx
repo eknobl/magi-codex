@@ -7,7 +7,9 @@ export function Banner() {
   const pathname = usePathname();
 
   let subtitle = 'DASHBOARD';
-  if (pathname.startsWith('/dashboard/timeline')) {
+  if (pathname === '/') {
+    subtitle = 'THE TWELVE';
+  } else if (pathname.startsWith('/dashboard/timeline')) {
     subtitle = 'TIMELINE';
   } else if (pathname.startsWith('/dashboard/dispatches')) {
     subtitle = 'DISPATCHES';

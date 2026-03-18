@@ -1,54 +1,64 @@
-import { db } from '@/db';
-import { magiStates } from '@/db/schema';
-import type { MagiState } from '@/types/magi';
-import MagiCard from '@/components/MagiCard';
-import Link from 'next/link';
+import MagiPortrait from '@/components/MagiPortrait';
 
 export const dynamic = 'force-dynamic';
 
-export default async function DashboardPage() {
-  let rows: typeof magiStates.$inferSelect[] = [];
-  let error: string | null = null;
+// ── MAGI roster ───────────────────────────────────────────────────────────────
+// Ordered to match the 4×3 grid layout (alphabetical by ID = DB order)
+const MAGI_ROSTER = [
+  { id: 'APOLLO',  fullName: 'APOLLO PRIME',    domain: 'Prediction · Risk · Strategy',              color: 'var(--apollo)'  },
+  { id: 'ATHENA',  fullName: 'ATHENA SEER',     domain: 'Military · Defense · Deterrence',           color: 'var(--athena)'  },
+  { id: 'BRIGID',  fullName: 'BRIGID MOTHER',   domain: 'Medicine · Welfare · Biosystems',           color: 'var(--brigid)'  },
+  { id: 'HERMES',  fullName: 'HERMES ECHO',     domain: 'Communication · Information Networks',      color: 'var(--hermes)'  },
+  { id: 'NEZHA',   fullName: 'NEZHA SENTRY',    domain: 'Digital Systems · Cybersecurity',           color: 'var(--nezha)'   },
+  { id: 'NUWA',    fullName: 'NUWA GAIA',        domain: 'Ecology · Sustainability · Growth',         color: 'var(--nuwa)'    },
+  { id: 'SVAROG',  fullName: 'SVAROG MECHA',    domain: 'Infrastructure · Manufacturing',            color: 'var(--svarog)'  },
+  { id: 'SURYA',   fullName: 'SURYA CORE',      domain: 'Energy · Climate · Resource Allocation',    color: 'var(--surya)'   },
+  { id: 'TENGRI',  fullName: 'TENGRI ASTRA',    domain: 'Mobility · Logistics · Coordination',       color: 'var(--tengri)'  },
+  { id: 'THEMIS',  fullName: 'THEMIS CODEX',    domain: 'Law · Ethics · Jurisprudence',              color: 'var(--themis)'  },
+  { id: 'THOTH',   fullName: 'THOTH HORIZON',   domain: 'Scientific Discovery · Research',           color: 'var(--thoth)'   },
+  { id: 'TYR',     fullName: 'TYR APEX',        domain: 'Security · Enforcement · Crisis Response',  color: 'var(--tyr)'     },
+] as const;
 
-  try {
-    rows = await db.select().from(magiStates).orderBy(magiStates.id);
-  } catch (e) {
-    error = 'Database not connected. Run: npm run db:push && npm run db:seed';
-  }
-
+export default function DashboardPage() {
   return (
-    <main className="dashboard-grid">
-      <header className="dashboard-header">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <h1 style={{ margin: 0 }}>MAGI CODEX</h1>
-          <nav style={{ display: 'flex', gap: '1.5rem' }}>
-            <Link href="/dashboard/dispatches" className="navbar-link">TRANSMISSIONS</Link>
-            <Link href="/dashboard/timeline" className="navbar-link">TIMELINE</Link>
-          </nav>
+    <main style={{ background: 'var(--background)', minHeight: '100vh', padding: '2rem 2.5rem' }}>
+
+      {/* ── Header ─────────────────────────────────────────────────────────── */}
+      <header style={{ marginBottom: '1.75rem' }}>
+        <div style={{
+          fontFamily: 'var(--font-kode-mono), monospace',
+          fontWeight: 700,
+          fontSize: '1.5rem',
+          letterSpacing: '0.1em',
+          color: '#fff',
+          lineHeight: 1,
+          marginBottom: '0.4rem',
+        }}>
+          THE TWELVE
         </div>
-        <span className="dashboard-subtitle" style={{ marginTop: '0.25rem', display: 'block' }}>
-          AUTHOR DASHBOARD — {rows.length > 0 ? `${rows.length} MAGI ONLINE` : 'OFFLINE'}
-        </span>
+        <div style={{
+          fontSize: '0.6rem',
+          letterSpacing: '0.2em',
+          color: 'var(--text-muted)',
+        }}>
+          MAXIMIZED ARTIFICIAL GOVERNING INTELLIGENCE
+        </div>
       </header>
 
-      {error && (
-        <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '2rem', fontStyle: 'italic' }}>
-          {error}
-        </div>
-      )}
-
-      <div className="magi-grid">
-        {rows.map((row) => (
-          <MagiCard
-            key={row.id}
-            magiId={row.id}
-            domain={row.domain}
-            state={row.state as MagiState}
-            fictionalDate={{
-              year: row.fictionalYear,
-              month: row.fictionalMonth,
-              day: row.fictionalDay,
-            }}
+      {/* ── 4×3 Portrait Grid ──────────────────────────────────────────────── */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gap: '2px',
+      }}>
+        {MAGI_ROSTER.map((magi) => (
+          <MagiPortrait
+            key={magi.id}
+            magiId={magi.id}
+            fullName={magi.fullName}
+            domain={magi.domain}
+            color={magi.color}
+            href={`/dashboard/${magi.id.toLowerCase()}`}
           />
         ))}
       </div>
