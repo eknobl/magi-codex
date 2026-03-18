@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 
 interface HeroCarouselProps {
   images: string[];
@@ -22,19 +21,20 @@ export default function HeroCarousel({ images, intervalMs = 5000 }: HeroCarousel
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       {images.map((src, i) => (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
           key={src}
           src={src}
           alt=""
-          fill
-          priority={i === 0}
-          sizes="75vw"
           style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
             objectFit: 'cover',
             objectPosition: 'center top',
             opacity: i === active ? 1 : 0,
             transition: 'opacity 1.5s ease',
-            position: 'absolute',
           }}
         />
       ))}
