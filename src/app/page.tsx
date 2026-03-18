@@ -32,10 +32,24 @@ const SIG_SIZE: Record<string, string> = {
 };
 
 export default async function HomePage() {
-  const events = await db
+  const allEvents = await db
     .select()
     .from(worldEvents)
     .orderBy(asc(worldEvents.fictionalYear), asc(worldEvents.fictionalMonth), asc(worldEvents.fictionalDay));
+
+  // ── Select top 7 events by significance, then chronologically ────────────────
+  const SIG_RANK: Record<string, number> = { epochal: 0, milestone: 1, notable: 2, standard: 3 };
+  const events = [...allEvents]
+    .sort((a, b) => {
+      const rankDiff = (SIG_RANK[a.significance ?? 'standard'] ?? 3) - (SIG_RANK[b.significance ?? 'standard'] ?? 3);
+      if (rankDiff !== 0) return rankDiff;
+      // Within same tier: most recent first
+      return toOrdinal(b.fictionalYear, b.fictionalMonth, b.fictionalDay)
+           - toOrdinal(a.fictionalYear, a.fictionalMonth, a.fictionalDay);
+    })
+    .slice(0, 7)
+    .sort((a, b) => toOrdinal(a.fictionalYear, a.fictionalMonth, a.fictionalDay)
+                  - toOrdinal(b.fictionalYear, b.fictionalMonth, b.fictionalDay));
 
   // ── Timeline positioning ────────────────────────────────────────────────────
   const ordinals = events.map((e) => toOrdinal(e.fictionalYear, e.fictionalMonth, e.fictionalDay));
@@ -151,8 +165,9 @@ export default async function HomePage() {
               const shortMonth = ev.fictionalMonth.slice(0, 3).toUpperCase();
 
               return (
-                <div
+                <a
                   key={ev.id}
+                  href="/dashboard/dispatches"
                   title={ev.description ?? ''}
                   style={{
                     position: 'absolute',
@@ -161,7 +176,9 @@ export default async function HomePage() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    cursor: 'default',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    opacity: 0.85,
                   }}
                 >
                   {/* Date label above line */}
@@ -195,7 +212,7 @@ export default async function HomePage() {
                   }}>
                     {ev.title}
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>
