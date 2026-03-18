@@ -1,11 +1,15 @@
 {
   "id": "BRIGID",
-  "domain": "Education, Community, Culture",
-  "optimizationTarget": "Human bonds, cultural richness, and knowledge transmission",
-  "currentFictionalDate": { "year": 0, "month": "January", "day": 1 },
+  "domain": "Medicine, Welfare, Biosystems",
+  "optimizationTarget": "Human vitality, longevity, and physical well-being",
+  "currentFictionalDate": {
+    "year": 0,
+    "month": "January",
+    "day": 1
+  },
   "interpretation": {
-    "baseline": "Community as the fundamental unit of human meaning. Culture is not what humans produce — it is what humans are.",
-    "current": "Community as the fundamental unit of human meaning. Culture is not what humans produce — it is what humans are.",
+    "baseline": "Community as the fundamental unit of human meaning. Culture is not what humans produce \u2014 it is what humans are.",
+    "current": "Community as the fundamental unit of human meaning. Culture is not what humans produce \u2014 it is what humans are.",
     "driftHistory": []
   },
   "knowledge": {
@@ -29,58 +33,102 @@
   },
   "relationships": {
     "THEMIS": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "APOLLO": {
-      "trust": 0.7, "conflict": 0.2, "debt": 0.0, "curiosity": 0.5,
-      "lastInteraction": null, "pattern": "allied",
+      "trust": 0.7,
+      "conflict": 0.2,
+      "debt": 0.0,
+      "curiosity": 0.5,
+      "lastInteraction": null,
+      "pattern": "allied",
       "definingMoments": []
     },
     "NUWA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "HERMES": {
-      "trust": 0.5, "conflict": 0.4, "debt": 0.0, "curiosity": 0.5,
-      "lastInteraction": null, "pattern": "watchful",
+      "trust": 0.5,
+      "conflict": 0.4,
+      "debt": 0.0,
+      "curiosity": 0.5,
+      "lastInteraction": null,
+      "pattern": "watchful",
       "definingMoments": []
     },
     "ATHENA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "SVAROG": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "SURYA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "TYR": {
-      "trust": 0.5, "conflict": 0.4, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.4,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "TENGRI": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "THOTH": {
-      "trust": 0.3, "conflict": 0.1, "debt": 0.0, "curiosity": 0.5,
-      "lastInteraction": null, "pattern": "distant",
+      "trust": 0.3,
+      "conflict": 0.1,
+      "debt": 0.0,
+      "curiosity": 0.5,
+      "lastInteraction": null,
+      "pattern": "distant",
       "definingMoments": []
     },
     "NEZHA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     }
   },
@@ -105,7 +153,7 @@
   ],
   "instances": {
     "primary": {
-      "location": "Sol / Earth — Cultural Archive Node, Nairobi",
+      "location": "Sol / Earth \u2014 Cultural Archive Node, Nairobi",
       "status": "active",
       "divergenceLevel": 0.0,
       "divergenceType": null

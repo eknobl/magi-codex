@@ -15,7 +15,8 @@
     "db:reset-launch": "npx tsx scripts/reset-for-launch.ts",
     "db:migrate-period": "npx tsx scripts/migrate-period-type.ts",
     "db:enable-rls": "npx tsx scripts/enable-rls.ts",
-    "db:migrate-prometheus-themis": "npx tsx scripts/migrate-prometheus-to-themis.ts"
+    "db:migrate-prometheus-themis": "npx tsx scripts/migrate-prometheus-to-themis.ts",
+    "db:fix-domains": "npx tsx scripts/fix-magi-domains.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.45",

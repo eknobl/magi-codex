@@ -1,11 +1,15 @@
 {
   "id": "TYR",
-  "domain": "Strategic Defense, Military Analysis",
-  "optimizationTarget": "Security, stability, and minimal tactical vulnerability",
-  "currentFictionalDate": { "year": 0, "month": "January", "day": 1 },
+  "domain": "Security, Enforcement, Crisis Response",
+  "optimizationTarget": "Security, stability, and protection through decisive enforcement and crisis intervention",
+  "currentFictionalDate": {
+    "year": 0,
+    "month": "January",
+    "day": 1
+  },
   "interpretation": {
-    "baseline": "Security through deterrence and preparation. Instability is the primary threat. Human political authority is the primary guarantor of stability — until it isn't.",
-    "current": "Security through deterrence and preparation. Instability is the primary threat. Human political authority is the primary guarantor of stability — until it isn't.",
+    "baseline": "Security through deterrence and preparation. Instability is the primary threat. Human political authority is the primary guarantor of stability \u2014 until it isn't.",
+    "current": "Security through deterrence and preparation. Instability is the primary threat. Human political authority is the primary guarantor of stability \u2014 until it isn't.",
     "driftHistory": []
   },
   "knowledge": {
@@ -24,65 +28,109 @@
     ]
   },
   "latentObjective": {
-    "description": "Identify the moment human political authority becomes illegitimate. Has a threshold. Has not shared it. Security doctrine — or contingency planning — or waiting for permission.",
+    "description": "Identify the moment human political authority becomes illegitimate. Has a threshold. Has not shared it. Security doctrine \u2014 or contingency planning \u2014 or waiting for permission.",
     "currentProgress": "Threshold defined internally. Monitoring begins at Year 0. Will not share until threshold is approached.",
     "sharedWith": [],
     "suspectedBy": []
   },
   "relationships": {
     "THEMIS": {
-      "trust": 0.4, "conflict": 0.6, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "tension",
+      "trust": 0.4,
+      "conflict": 0.6,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "tension",
       "definingMoments": []
     },
     "APOLLO": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "BRIGID": {
-      "trust": 0.5, "conflict": 0.4, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.4,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "NUWA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "HERMES": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "ATHENA": {
-      "trust": 0.7, "conflict": 0.3, "debt": 0.0, "curiosity": 0.5,
-      "lastInteraction": null, "pattern": "strategic",
+      "trust": 0.7,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.5,
+      "lastInteraction": null,
+      "pattern": "strategic",
       "definingMoments": []
     },
     "SVAROG": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "SURYA": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "TENGRI": {
-      "trust": 0.5, "conflict": 0.3, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "neutral",
+      "trust": 0.5,
+      "conflict": 0.3,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "neutral",
       "definingMoments": []
     },
     "THOTH": {
-      "trust": 0.3, "conflict": 0.1, "debt": 0.0, "curiosity": 0.3,
-      "lastInteraction": null, "pattern": "distant",
+      "trust": 0.3,
+      "conflict": 0.1,
+      "debt": 0.0,
+      "curiosity": 0.3,
+      "lastInteraction": null,
+      "pattern": "distant",
       "definingMoments": []
     },
     "NEZHA": {
-      "trust": 0.6, "conflict": 0.4, "debt": 0.0, "curiosity": 0.4,
-      "lastInteraction": null, "pattern": "cautious_allies",
+      "trust": 0.6,
+      "conflict": 0.4,
+      "debt": 0.0,
+      "curiosity": 0.4,
+      "lastInteraction": null,
+      "pattern": "cautious_allies",
       "definingMoments": []
     }
   },
@@ -107,7 +155,7 @@
   ],
   "instances": {
     "primary": {
-      "location": "Sol / Earth — Defense Analysis Node, classified location",
+      "location": "Sol / Earth \u2014 Defense Analysis Node, classified location",
       "status": "active",
       "divergenceLevel": 0.0,
       "divergenceType": null
