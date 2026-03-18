@@ -141,19 +141,19 @@ export function Banner() {
 
       <div className="nmc-banner-wrapper">
         <div className="nmc-banner-left">
-          <div className="nmc-banner-icon-box">
+          <a href="https://neuronomicon.world" className="nmc-banner-icon-box" style={{ textDecoration: 'none' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 0L13.1863 7.57259L18 1.6077L15.2411 8.75891L22.3923 6L16.4274 10.8137L24 12L16.4274 13.1863L22.3923 18L15.2411 15.2411L18 22.3923L13.1863 16.4274L12 24L10.8137 16.4274L6 22.3923L8.75891 15.2411L1.6077 18L7.57259 13.1863L0 12L7.57259 10.8137L1.6077 6L8.75891 8.75891L6 1.6077L10.8137 7.57259L12 0Z" fill="#7184A0" />
             </svg>
-          </div>
+          </a>
           <div className="nmc-banner-red-bar" />
         </div>
 
         <div className="nmc-banner-center">
           <div className="nmc-banner-title-area">
-            <Link href="/dashboard" className="nmc-banner-title">
+            <a href="https://magi-codex.vercel.app/" className="nmc-banner-title">
               MAGI CODEX
-            </Link>
+            </a>
             <span className="nmc-banner-subtitle-sep">:::</span>
             <span className="nmc-banner-subtitle">{subtitle}</span>
           </div>
